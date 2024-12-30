@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import App from "../../App";
+import Layout from "../../pages/Layout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Layout />,
     errorElement: <div>404</div>,
     children: [
       {
