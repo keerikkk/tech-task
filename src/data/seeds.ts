@@ -48,7 +48,13 @@ export const seeds: Transaction[] = [
   },
 ];
 
-export const currencyRates = {
+type CurrencyRates = {
+  [key: string]: {
+    [key: string]: number;
+  };
+};
+
+export const currencyRates: CurrencyRates = {
   UAH: {
     USD: 41,
     EUR: 40,
