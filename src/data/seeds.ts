@@ -47,3 +47,18 @@ export const seeds: Transaction[] = [
     client: "1",
   },
 ];
+
+export const currencyRates = {
+  UAH: {
+    USD: 41,
+    EUR: 40,
+  },
+  USD: {
+    UAH: 0.24,
+    EUR: 0.95,
+  },
+  EUR: {
+    UAH: 24,
+    USD: 1.05,
+  },
+};
