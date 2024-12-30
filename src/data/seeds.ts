@@ -1,6 +1,6 @@
 import { Transaction } from "../types/transactions";
 
-export const displayedColumns = {
+export const displayedColumns: Record<keyof Transaction, string> = {
   id: "ID",
   type: "Операція",
   from: "Валюта 1",
@@ -16,7 +16,7 @@ export const seeds: Transaction[] = [
   {
     id: "1",
     type: "buy",
-    fron: "EUR",
+    from: "EUR",
     amountFrom: 400,
     to: "UAH",
     amountTo: 16000,
@@ -27,7 +27,7 @@ export const seeds: Transaction[] = [
   {
     id: "2",
     type: "buy",
-    fron: "USD",
+    from: "USD",
     amountFrom: 100,
     to: "UAH",
     amountTo: 4100,
@@ -38,7 +38,7 @@ export const seeds: Transaction[] = [
   {
     id: "3",
     type: "sell",
-    fron: "USD",
+    from: "USD",
     amountFrom: 100,
     to: "EUR",
     amountTo: 80,

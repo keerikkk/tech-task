@@ -1,7 +1,7 @@
 export interface Transaction {
   id: string;
   type: "buy" | "sell";
-  fron: string;
+  from: string;
   amountFrom: number;
   to: string;
   amountTo: number;
