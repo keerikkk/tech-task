@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
-import App from "../../App";
 import Layout from "../../pages/Layout";
+import TransactionsPage from "../../pages/TransactionsPage";
 
 export const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/transactions",
-        element: <div>Transactions</div>,
+        element: <TransactionsPage />,
       },
       {
         path: "/currency",
