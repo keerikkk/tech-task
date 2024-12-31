@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import { seeds, currencyRates } from "../data/seeds";
+import { Transaction } from "../types/transactions";
 
 type TransactionFormProps = {
   onClose: () => void;
@@ -34,12 +35,12 @@ const TransactionForm = ({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newTransaction = {
+    const newTransaction: Transaction = {
       id: Math.floor(Math.random() * 1000000).toString(),
       type,
-      from: fromCurrency,
+      from: fromCurrency as string,
       amountFrom,
-      to: toCurrency,
+      to: toCurrency as string,
       amountTo,
       rate,
       createdAt: new Date(),
@@ -175,4 +176,3 @@ const TransactionForm = ({
 };
 
 export default TransactionForm;
-
