@@ -11,11 +11,11 @@ const admin: User = {
 export async function getUser() {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  return { admin };
+  return admin;
 }
 
 export async function login() {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  return { admin };
+  return admin;
 }
