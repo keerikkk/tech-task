@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { User, login, getUser } from "../types/auth";
+import { createContext, useContext, useState } from "react";
+import { User, login } from "../types/auth";
 
 type AuthContext = {
   user: User | null;
@@ -15,20 +15,6 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const response = await getUser();
-        const user = response;
-        setUser(user);
-      } catch {
-        setUser(null);
-      }
-    }
-
-    fetchUser();
-  }, []);
 
   async function handleLogin() {
     try {
