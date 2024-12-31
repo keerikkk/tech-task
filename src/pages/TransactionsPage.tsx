@@ -35,7 +35,7 @@ const TransactionsPage = () => {
           margin: "10px",
         }}
       >
-        Add new transaction
+        Додати
       </Button>
       <TransactionList transactions={transactions} />
       <Modal
