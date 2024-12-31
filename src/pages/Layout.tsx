@@ -1,11 +1,19 @@
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import NavBar from "../components/NavBar";
 import { useAuth } from "../components/AuthProvider";
 import AuthForm from "../components/AuthForm";
 import { Container } from "@mui/material";
+import { useEffect } from "react";
 
 const Layout = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/transactions");
+    }
+  }, [user, navigate]);
 
   return (
     <>
