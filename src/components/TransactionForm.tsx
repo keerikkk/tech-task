@@ -15,9 +15,13 @@ import { seeds, currencyRates } from "../data/seeds";
 
 type TransactionFormProps = {
   onClose: () => void;
+  setTransactions: React.Dispatch<React.SetStateAction<typeof seeds>>;
 };
 
-const TransactionForm = ({ onClose }: TransactionFormProps) => {
+const TransactionForm = ({
+  onClose,
+  setTransactions,
+}: TransactionFormProps) => {
   const [amountFrom, setAmountFrom] = useState(0);
   const [fromCurrency, setFromCurrency] =
     useState<keyof typeof currencyRates>("USD");
@@ -29,7 +33,9 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const newTransaction = {
+      id: Math.floor(Math.random() * 1000000).toString(),
       type,
       from: fromCurrency,
       amountFrom,
@@ -39,7 +45,8 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
       createdAt: new Date(),
       client: "1",
     };
-    seeds.push(newTransaction);
+
+    setTransactions((transactions) => [...transactions, newTransaction]);
     setAmountFrom(0);
     onClose();
   };
@@ -168,3 +175,4 @@ const TransactionForm = ({ onClose }: TransactionFormProps) => {
 };
 
 export default TransactionForm;
+

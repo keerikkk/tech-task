@@ -5,6 +5,7 @@ import { useState } from "react";
 import TransactionForm from "../components/TransactionForm";
 
 const TransactionsPage = () => {
+  const [transactions, setTransactions] = useState(seeds);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -36,7 +37,7 @@ const TransactionsPage = () => {
       >
         Add new transaction
       </Button>
-      <TransactionList transactions={seeds} />
+      <TransactionList transactions={transactions} />
       <Modal
         open={isOpen}
         onClose={handleClose}
@@ -56,7 +57,10 @@ const TransactionsPage = () => {
             p: 4,
           }}
         >
-          <TransactionForm onClose={handleClose} />
+          <TransactionForm
+            onClose={handleClose}
+            setTransactions={setTransactions}
+          />
         </Box>
       </Modal>
     </Container>
@@ -64,4 +68,3 @@ const TransactionsPage = () => {
 };
 
 export default TransactionsPage;
-
