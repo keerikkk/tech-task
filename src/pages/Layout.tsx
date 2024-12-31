@@ -12,14 +12,12 @@ const Layout = () => {
       {user ? (
         <>
           <NavBar />
-          <main>
-            <Outlet />
-          </main>
-          <footer>footer</footer>
+          <Outlet />
         </>
       ) : (
         <Container sx={{ width: "100vw" }}>
           <AuthForm />
+          <Outlet />
         </Container>
       )}
     </>

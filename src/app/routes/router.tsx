@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Layout from "../../pages/Layout";
 import TransactionsPage from "../../pages/TransactionsPage";
+import { ProtectedRoute } from "../../components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -10,19 +11,35 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/transactions",
-        element: <TransactionsPage />,
+        element: (
+          <ProtectedRoute>
+            <TransactionsPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/currency",
-        element: <div>Currency</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Currency</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/paydesk",
-        element: <div>Paydesk</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Paydesk</div>
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/clients",
-        element: <div>Clients</div>,
+        element: (
+          <ProtectedRoute>
+            <div>Clients</div>
+          </ProtectedRoute>
+        ),
       },
     ],
   },
