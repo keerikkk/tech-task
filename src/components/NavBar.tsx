@@ -13,10 +13,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { navItems } from "../data/navigationLinks";
+import { useAuth } from "./AuthProvider";
 
 const drawerWidth = 240;
 
 export default function DrawerAppBar() {
+  const { handleLogout } = useAuth();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -48,7 +50,7 @@ export default function DrawerAppBar() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{ display: "flex", justifyContent: { sm: "center" } }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -73,6 +75,9 @@ export default function DrawerAppBar() {
               </Button>
             ))}
           </Box>
+          <Button color="error" variant="contained" onClick={handleLogout}>
+            Вийти
+          </Button>
         </Toolbar>
       </AppBar>
 
