@@ -1,105 +1,80 @@
-import * as React from "react";
-import { useNavigate } from "react-router";
+import { styled, useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Button } from "@mui/material";
+import { useLocation } from "react-router";
 import { navItems } from "../data/navigationLinks";
 import { useAuth } from "./AuthProvider";
 
-const drawerWidth = 240;
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  alignItems: "center",
+  paddingTop: 0,
+  paddingBottom: theme.spacing(2),
+  display: "grid",
+  gridTemplateColumns: "1fr 3fr 1fr",
+  gap: theme.spacing(2),
+}));
 
-export default function DrawerAppBar() {
+export default function NavBar() {
   const { handleLogout } = useAuth();
-  const navigate = useNavigate();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const theme = useTheme();
+  const location = useLocation();
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", display: "flex", justifyContent: "center" }}
-    >
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.title} disablePadding>
-            <ListItemButton
-              sx={{ textAlign: "center" }}
-              onClick={() => navigate(item.path)}
-            >
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const currentPage = navItems.find((item) => item.path === location.pathname);
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed">
+        <StyledToolbar>
+          <Button
+            variant="contained"
+            sx={{
+              justifySelf: "center",
+              marginTop: theme.spacing(1),
+            }}
+            onClick={handleLogout}
           >
-            <MenuIcon />
-          </IconButton>
+            Закрити
+          </Button>
+
           <Box
             sx={{
-              display: { xs: "none", sm: "block" },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              fontSize: "1.25rem",
+              fontWeight: "bold",
+              color: theme.palette.common.black,
+              backgroundColor: theme.palette.primary.light,
             }}
           >
-            {navItems.map((item) => (
-              <Button
-                key={item.title}
-                sx={{ color: "#fff" }}
-                onClick={() => navigate(item.path)}
-              >
-                {item.title}
-              </Button>
-            ))}
+            {currentPage ? currentPage.title : "Unknown page"}
           </Box>
-          <Button color="error" variant="contained" onClick={handleLogout}>
-            Вийти
-          </Button>
-        </Toolbar>
+          <IconButton
+            size="small"
+            aria-label="display more actions"
+            edge="end"
+            color="inherit"
+            sx={{
+              width: "2rem",
+              height: "2rem",
+              justifySelf: "center",
+              border: "1px solid #fff",
+              marginTop: theme.spacing(1),
+              borderRadius: "50%",
+              "&:hover": {
+                border: "1px solid rgba(255,255,255,0.5)",
+              },
+            }}
+          >
+            <MoreHorizIcon />
+          </IconButton>
+        </StyledToolbar>
       </AppBar>
-
-      <nav>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
     </Box>
   );
 }
