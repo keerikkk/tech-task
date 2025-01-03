@@ -26,17 +26,27 @@ const TransactionsPage = () => {
         width: "100vw",
       }}
     >
-      <Button
-        variant="contained"
-        color="success"
-        onClick={handleOpen}
+      <Box
         sx={{
-          alignSelf: "flex-end",
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "10px",
           margin: "10px",
         }}
       >
-        Додати
-      </Button>
+        <Box sx={{ display: "flex", gap: "10px" }}>
+          <Button variant="contained" color="primary">
+            Пошук
+          </Button>
+          <Button variant="contained" color="primary">
+            Фільтр
+          </Button>
+        </Box>
+
+        <Button variant="contained" color="success" onClick={handleOpen}>
+          Додати
+        </Button>
+      </Box>
       <TransactionList transactions={transactions} />
       <Modal
         open={isOpen}
