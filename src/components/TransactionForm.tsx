@@ -64,7 +64,7 @@ const TransactionForm = ({
     <Container maxWidth="md">
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <FormControl fullWidth>
               <InputLabel id="from-currency-label">From currency</InputLabel>
               <Select
@@ -90,7 +90,7 @@ const TransactionForm = ({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <FormControl fullWidth>
               <InputLabel id="to-currency-label">To currency</InputLabel>
               <Select
@@ -113,7 +113,7 @@ const TransactionForm = ({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <TextField
               margin="normal"
               required
@@ -125,7 +125,7 @@ const TransactionForm = ({
               onChange={(event) => setAmountFrom(Number(event.target.value))}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6}>
             <TextField
               margin="normal"
               disabled
@@ -136,7 +136,7 @@ const TransactionForm = ({
               value={amountTo}
             />
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="type-label">Type</InputLabel>
               <Select
@@ -153,7 +153,7 @@ const TransactionForm = ({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <TextField
               margin="normal"
               required
@@ -166,7 +166,7 @@ const TransactionForm = ({
               onChange={(event) => setSumFromClient(Number(event.target.value))}
             />
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <TextField
               margin="normal"
               required
@@ -179,12 +179,12 @@ const TransactionForm = ({
               onChange={(event) => setClient(event.target.value)}
             />
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography variant="body1" gutterBottom>
               Сума до сплати: {amountFrom.toFixed(2)}
             </Typography>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Typography variant="body1" gutterBottom>
               Здача: {(sumFromClient - amountFrom).toFixed(2)}
             </Typography>
