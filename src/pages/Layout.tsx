@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/BottomNavBar";
 import { useAuth } from "../components/AuthProvider";
 import AuthForm from "../components/AuthForm";
 import { Container } from "@mui/material";
@@ -19,8 +19,8 @@ const Layout = () => {
     <>
       {user ? (
         <>
-          <NavBar />
           <Outlet />
+          <NavBar />
         </>
       ) : (
         <Container sx={{ width: "100vw" }}>
