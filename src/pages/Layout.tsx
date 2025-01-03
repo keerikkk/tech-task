@@ -1,9 +1,10 @@
 import { Outlet, useNavigate } from "react-router";
-import NavBar from "../components/BottomNavBar";
+import BottomNavBar from "../components/BottomNavBar";
 import { useAuth } from "../components/AuthProvider";
 import AuthForm from "../components/AuthForm";
 import { Container } from "@mui/material";
 import { useEffect } from "react";
+import NavBar from "../components/NavBar";
 
 const Layout = () => {
   const { user } = useAuth();
@@ -19,8 +20,9 @@ const Layout = () => {
     <>
       {user ? (
         <>
-          <Outlet />
           <NavBar />
+          <Outlet />
+          <BottomNavBar />
         </>
       ) : (
         <Container sx={{ width: "100vw" }}>
